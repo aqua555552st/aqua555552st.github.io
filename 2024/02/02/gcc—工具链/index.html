@@ -156,43 +156,24 @@
 <h2 id="一、gcc四步骤"><a href="#一、gcc四步骤" class="headerlink" title="一、gcc四步骤"></a>一、gcc四步骤</h2><p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/C9577FD85681FA27D4706612B317E577.png" alt="gcc4部操作"></p>
 <h3 id="1-预处理"><a href="#1-预处理" class="headerlink" title="1.预处理"></a>1.预处理</h3><p>预处理器处理C语言源代码，<strong>扫描程序中所有的#开头的预编译指令，并将它们替换成相应的文本</strong>。预编译指令可以包括头文件包含、条件编译等等。</p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c">gcc <span class="token operator">-</span>E hello<span class="token punctuation">.</span>c <span class="token operator">-</span>o hello<span class="token punctuation">.</span>i<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-
-
 <h3 id="2-编译"><a href="#2-编译" class="headerlink" title="2.编译"></a>2.编译</h3><blockquote>
 <p><strong>消耗时间和系统资源最多</strong></p>
 </blockquote>
 <p>编译器将预处理器处理后的代码<strong>转换成汇编代码</strong>。它会对代码进行语法和语义分析，检查程序的语法错误和类型错误，并生成汇编代码</p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c">gcc <span class="token operator">-</span>S hello<span class="token punctuation">.</span>i <span class="token operator">-</span>o hello<span class="token punctuation">.</span>s<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-
-
 <h3 id="3-汇编"><a href="#3-汇编" class="headerlink" title="3.汇编"></a>3.汇编</h3><p>汇编器将汇编代码转换成机器码。它会将<strong>汇编代码转换为可执行代码</strong>，同时还会生成调试信息和符号表。</p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c">gcc <span class="token operator">-</span>c hello<span class="token punctuation">.</span>s <span class="token operator">-</span>o hello<span class="token punctuation">.</span>o<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-
-
 <h3 id="4-链接"><a href="#4-链接" class="headerlink" title="4.链接"></a>4.链接</h3><p>链接器将编译器生成的目标代码以及可能的库文件合并成最终的可执行文件。链接器<strong>将所有代码段和数据段链接起来，解析所有的符号引用，将地址回填。生成可执行文件</strong></p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c">gcc hello<span class="token punctuation">.</span>o <span class="token operator">-</span>o hello<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
 <hr>
 <h2 id="二、gcc编译常用参数"><a href="#二、gcc编译常用参数" class="headerlink" title="二、gcc编译常用参数"></a>二、gcc编译常用参数</h2><h3 id="1-头文件跨目录依赖"><a href="#1-头文件跨目录依赖" class="headerlink" title="1.头文件跨目录依赖"></a>1.头文件跨目录依赖</h3><p><strong>源文件与头文件不在同一个目录下</strong></p>
-<img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/image-20231228150656571.png" alt="当前目录结构"  />
-
+<p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/image-20231228150656571.png" alt="当前目录结构"  /></p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c">gcc <span class="token operator">-</span>I<span class="token punctuation">.</span><span class="token operator">/</span>newdir<span class="token operator">/</span> gcctest<span class="token punctuation">.</span>c <span class="token operator">-</span>o gcctest <span class="token comment">//-I后面表示头文件所在路径(绝对/相对)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-
-
-<h3 id="2-只做预处理-编译-汇编"><a href="#2-只做预处理-编译-汇编" class="headerlink" title="2.只做预处理+编译+汇编"></a>2.只做预处理+编译+汇编</h3><p><em><em>得到</em>.o的二进制文件</em>*</p>
+<h3 id="2-只做预处理-编译-汇编"><a href="#2-只做预处理-编译-汇编" class="headerlink" title="2.只做预处理+编译+汇编"></a>2.只做预处理+编译+汇编</h3><p><strong>得到*.o的二进制文件</strong></p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c">gcc <span class="token operator">-</span>c gcctest <span class="token operator">-</span>o gcctest<span class="token punctuation">.</span>o<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-
-
 <h3 id="3-编译时添加调试语句"><a href="#3-编译时添加调试语句" class="headerlink" title="3.编译时添加调试语句"></a>3.编译时添加调试语句</h3><pre class="line-numbers language-c" data-language="c"><code class="language-c">gcc <span class="token operator">-</span>g gcctest<span class="token punctuation">.</span>c <span class="token operator">-</span>o gcctest2<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
 <p><strong>显然，编译出来的可执行文件大小变大了，多了可调试文件在内</strong></p>
-<img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/image-20231228152301962.png" alt="添加调试语句-文件变大" style="zoom:67%;" />
-
+<p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/image-20231228152301962.png" alt="添加调试语句-文件变大" style="zoom:67%;" /></p>
 <hr>
 <h2 id="三、csapp—chapter7-链接"><a href="#三、csapp—chapter7-链接" class="headerlink" title="三、csapp—chapter7:链接"></a>三、csapp—chapter7:链接</h2><p>已知一个main.c文件</p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c"> <span class="token number">1</span> #include<span class="token operator">&lt;</span>stdio<span class="token punctuation">.</span>h<span class="token operator">></span>
@@ -213,15 +194,12 @@
 <span class="token number">16</span>         <span class="token function">func</span><span class="token punctuation">(</span>a <span class="token operator">+</span> b <span class="token operator">+</span> x<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token number">17</span>         <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token number">18</span> <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
 <p>通过<code>gcc -c main.c</code>得到可重定位二进制文件，再根据<code>wc -c main.o</code>查看main.o文件的大小</p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token punctuation">[</span>root@lhyEdu01 link<span class="token punctuation">]</span># gcc <span class="token operator">-</span>c main<span class="token punctuation">.</span>c
 <span class="token punctuation">[</span>root@lhyEdu01 link<span class="token punctuation">]</span># wc <span class="token operator">-</span>c main<span class="token punctuation">.</span>o
 <span class="token number">1856</span> main<span class="token punctuation">.</span>o<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
 <p>使用<code>readelf -h main.o</code>查看ELF可重定位目标文件的ELF头(ELF Header)的具体内容</p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c">readelf <span class="token operator">-</span>h main<span class="token punctuation">.</span>o<span class="token comment">//-h：只显示ELF Header的信息</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
 <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token punctuation">[</span>root@lhyEdu01 link<span class="token punctuation">]</span># readelf <span class="token operator">-</span>h main<span class="token punctuation">.</span>o
 ELF 头：
   Magic：  <span class="token number">7f</span> <span class="token number">45</span> <span class="token number">4</span>c <span class="token number">46</span> <span class="token number">02</span> <span class="token number">01</span> <span class="token number">01</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span> 
@@ -243,9 +221,6 @@ ELF 头：
   节头大小：         <span class="token number">64</span> <span class="token punctuation">(</span>字节<span class="token punctuation">)</span>
   节头数量：         <span class="token number">13</span>
   字符串表索引节头： <span class="token number">12</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
 <h3 id="1-可重定位目标文件-ELF文件"><a href="#1-可重定位目标文件-ELF文件" class="headerlink" title="1.可重定位目标文件(ELF文件)"></a>1.可重定位目标文件(ELF文件)</h3><p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/image-20231228190228140.png" alt="ELF文件"></p>
 <h3 id="2-section-节-的具体内容"><a href="#2-section-节-的具体内容" class="headerlink" title="2.section(节)的具体内容"></a>2.section(节)的具体内容</h3><ol>
 <li><strong><code>.text</code>：已编译程序的及其代码</strong></li>
@@ -254,7 +229,7 @@ ELF 头：
 <li><strong><code>.bss(Better Save Space)</code>：<u>未初始化</u>的全局和静态C变量</strong></li>
 <li><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/image-20231228191717559.png" style="zoom: 33%;" /></li>
 </ol>
-<h3 id="3-符号-符号表-symtab）"><a href="#3-符号-符号表-symtab）" class="headerlink" title="3.符号&amp;符号表(.symtab）"></a>3.符号&amp;符号表(.symtab）</h3><p><strong>对于每一个可重定位目标文件(ELF)m，都有一个符号表(.symtab节中)。在链接器的上下文中，有三种不同的符号：</strong></p>
+<h3 id="3-符号-amp-符号表-symtab）"><a href="#3-符号-amp-符号表-symtab）" class="headerlink" title="3.符号&amp;符号表(.symtab）"></a>3.符号&amp;符号表(.symtab）</h3><p><strong>对于每一个可重定位目标文件(ELF)m，都有一个符号表(.symtab节中)。在链接器的上下文中，有三种不同的符号：</strong></p>
 <ol>
 <li><strong><code>全局符号(Global Symbols)</code>：模块m定义+能被其他模块引用</strong></li>
 <li><strong><code>外部符号(Externals Symbols)</code>：其他模块定义+能被模块m引用</strong></li>
@@ -283,27 +258,20 @@ Symbol table <span class="token char">'.symtab'</span> contains <span class="tok
     <span class="token number">13</span><span class="token operator">:</span> <span class="token number">0000000000000000</span>    <span class="token number">33</span> FUNC    GLOBAL DEFAULT    <span class="token number">1</span> func
     <span class="token number">14</span><span class="token operator">:</span> <span class="token number">0000000000000000</span>     <span class="token number">0</span> NOTYPE  GLOBAL DEFAULT  UND printf
     <span class="token number">15</span><span class="token operator">:</span> <span class="token number">0000000000000021</span>    <span class="token number">55</span> FUNC    GLOBAL DEFAULT    <span class="token number">1</span> main<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
 <blockquote>
 <p>Type：FUNC-函数、OBJECT-变量数组等数据对象</p>
 <p>Value：表示函数相对于.text section起始位置的偏移量</p>
-<p>Bind：作用范围。局部&#x2F;全局</p>
-<p>Ndx：表示节头部表的section的数组索引。如：Ndx&#x3D;1表示在.text节；Ndx&#x3D;3表示在.data节</p>
+<p>Bind：作用范围。局部/全局</p>
+<p>Ndx：表示节头部表的section的数组索引。如：Ndx=1表示在.text节；Ndx=3表示在.data节</p>
 <blockquote>
 <p>Ndx表示中有<strong>3个伪节：</strong></p>
-</blockquote>
-<blockquote>
 <ul>
 <li><strong><code>ABS</code>：不该被重定位的符号</strong></li>
 <li><strong><code>UNDEF</code>：未定义的符号</strong></li>
 <li><strong><code>COMMON</code>：未被分配位置的初始化的数据目标</strong></li>
 </ul>
-</blockquote>
-<blockquote>
 <p><strong>注意：变量count和value属于不同section的原因：count初始化了，value没有初始化</strong></p>
-</blockquote>
-<blockquote>
-<p><strong>COMMON：未初始化的全局变量；.bss节：未初始化的静态变量+初始化为0的静态&#x2F;全局变量</strong></p>
+<p><strong>COMMON：未初始化的全局变量；.bss节：未初始化的静态变量+初始化为0的静态/全局变量</strong></p>
 </blockquote>
 </blockquote>
 <h3 id="4-符号解析"><a href="#4-符号解析" class="headerlink" title="4.符号解析"></a>4.符号解析</h3><p>对以下源文件进行编译linkerror.c进行编译汇编，生成二进制文件linkerror.o。</p>
@@ -314,17 +282,15 @@ Symbol table <span class="token char">'.symtab'</span> contains <span class="tok
         <span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><code>gcc -c linkerror.c</code>，编译可以通过！<font size=3 color=red>当编译器遇到一个不是在当前模块定义的符号(变量/函数名)时，会假设该符号是在在其他模块在定义的。</font></p>
+<font size=3 color=red>但是链接器(ld)无法解析对foo的引用时，就会终止！</font>
 
-<p><code>gcc -c linkerror.c </code>，编译可以通过！<font size=3 color=red>当编译器遇到一个不是在当前模块定义的符号(变量&#x2F;函数名)时，会假设该符号是在在其他模块在定义的。</font></p>
-<p><font size=3 color=red>但是链接器(ld)无法解析对foo的引用时，就会终止！</font></p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token punctuation">[</span>root@lhyEdu01 link<span class="token punctuation">]</span># gcc <span class="token operator">-</span>Wall <span class="token operator">-</span>Og <span class="token operator">-</span>o linkerror linkerror<span class="token punctuation">.</span>c
 <span class="token operator">/</span>tmp<span class="token operator">/</span>cc5EcYAf<span class="token punctuation">.</span>o：在函数‘main’中：
 linkerror<span class="token punctuation">.</span>c<span class="token operator">:</span><span class="token punctuation">(</span><span class="token punctuation">.</span>text<span class="token operator">+</span><span class="token number">0x5</span><span class="token punctuation">)</span>：对‘foo’未定义的引用
 collect2<span class="token operator">:</span> 错误：ld 返回 <span class="token number">1</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<font size=4 color=red>引出问题："全局符号"在多个可重定位目标文件中【同名定义】，如何处理？</font>
 
-
-
-<p><font size=4 color=red>引出问题：”全局符号”在多个可重定位目标文件中【同名定义】，如何处理？</font></p>
 <p><strong>编译时，编译器向汇编器输出每个全局符号的类型：</strong></p>
 <ul>
 <li><strong><code>Strong symbols(强符号)</code>：函数和已初始化的全局变量</strong></li>
@@ -342,7 +308,6 @@ collect2<span class="token operator">:</span> 错误：ld 返回 <span class="to
 <span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
         <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
 <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token punctuation">[</span>root@lhyEdu01 link<span class="token punctuation">]</span># gcc foo1<span class="token punctuation">.</span>c bar1<span class="token punctuation">.</span>c
 <span class="token operator">/</span>tmp<span class="token operator">/</span>ccSHeCo9<span class="token punctuation">.</span>o：在函数‘main’中：
 bar1<span class="token punctuation">.</span>c<span class="token operator">:</span><span class="token punctuation">(</span><span class="token punctuation">.</span>text<span class="token operator">+</span><span class="token number">0x0</span><span class="token punctuation">)</span><span class="token operator">:</span> main 的多重定义
@@ -366,11 +331,9 @@ collect2<span class="token operator">:</span> 错误：ld 返回 <span class="to
 <span class="token keyword">void</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
         x <span class="token operator">=</span> <span class="token number">15212</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
 <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token punctuation">[</span>root@lhyEdu01 link<span class="token punctuation">]</span># gcc foo2<span class="token punctuation">.</span>c bar2<span class="token punctuation">.</span>c
 <span class="token punctuation">[</span>root@lhyEdu01 link<span class="token punctuation">]</span># <span class="token punctuation">.</span><span class="token operator">/</span>a<span class="token punctuation">.</span>out
 x <span class="token operator">=</span> <span class="token number">15212</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
 <p>函数f将x的值由15213改为15212。一个模块(bar2.c)里的x未初始化(弱符号)，链接器会安静地选择其他模块(foo2.c)里定义的强符号</p>
 </li>
 <li><p><strong>规则3：如果有多个弱符号同名，任意选择一个</strong></p>
@@ -391,11 +354,11 @@ x <span class="token operator">=</span> <span class="token number">15212</span><
 <span class="token keyword">void</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
         x <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">0.0</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
 <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token punctuation">[</span>root@lhyEdu01 link<span class="token punctuation">]</span># gcc foo3<span class="token punctuation">.</span>c bar3<span class="token punctuation">.</span>c
-<span class="token operator">/</span>usr<span class="token operator">/</span>bin<span class="token operator">/</span>ld<span class="token operator">:</span> Warning<span class="token operator">:</span> alignment <span class="token number">4</span> of symbol `x' in <span class="token operator">/</span>tmp<span class="token operator">/</span>ccWPcPGG<span class="token punctuation">.</span>o is smaller than <span class="token number">8</span> in <span class="token operator">/</span>tmp<span class="token operator">/</span>cc3MhEaU<span class="token punctuation">.</span>o<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
+<span class="token operator">/</span>usr<span class="token operator">/</span>bin<span class="token operator">/</span>ld<span class="token operator">:</span> Warning<span class="token operator">:</span> alignment <span class="token number">4</span> of symbol `x' in <span class="token operator">/</span>tmp<span class="token operator">/</span>ccWPcPGG<span class="token punctuation">.</span>o is smaller than <span class="token number">8</span> in <span class="token operator">/</span>tmp<span class="token operator">/</span>cc3MhEaU<span class="token punctuation">.</span>o<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
 </ol>
-<h4 id="静态库-static-library"><a href="#静态库-static-library" class="headerlink" title="静态库(static library)"></a>静态库(static library)</h4><p>在共享库出现之前，<strong>公用功能(atoi&#x2F;printf&#x2F;scanf&#x2F;strcpy&#x2F;rand等)<strong>是以</strong>静态库</strong>的形式存在的，它把<strong>通用功能模块的多个目标文件打包在一起形成<code>*.a</code>的文件(如libc.a)<strong>，用到它的程序只需要在链接时指定这个库文件，</strong>链接器就会从这个库中抽取出用到的功能代码拷贝到目标程序中</strong>，而不需要每次都对这些通用功能代码重新编译。</p>
+<h4 id="静态库-static-library"><a href="#静态库-static-library" class="headerlink" title="静态库(static library)"></a>静态库(static library)</h4><p>在共享库出现之前，<strong>公用功能(atoi/printf/scanf/strcpy/rand等)</strong>是以<strong>静态库</strong>的形式存在的，它把<strong>通用功能模块的多个目标文件打包在一起形成<code>*.a</code>的文件(如libc.a)</strong>，用到它的程序只需要在链接时指定这个库文件，<strong>链接器就会从这个库中抽取出用到的功能代码拷贝到目标程序中</strong>，而不需要每次都对这些通用功能代码重新编译。</p>
 <p><strong>对文件<em>addvec.c</em>和<em>multvec.c</em>进行编译<code>gcc -c addvec.c multvec.c</code>，得到目标模块</strong></p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">int</span> addcnt <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token keyword">void</span> <span class="token function">addvec</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span> x<span class="token punctuation">,</span> <span class="token keyword">int</span> <span class="token operator">*</span> y<span class="token punctuation">,</span> <span class="token keyword">int</span> <span class="token operator">*</span> z<span class="token punctuation">,</span> <span class="token keyword">int</span> n<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
@@ -407,7 +370,6 @@ x <span class="token operator">=</span> <span class="token number">15212</span><
                 z<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> x<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+</span> y<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
         <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
 <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">int</span> multcnt <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token keyword">void</span> <span class="token function">multvec</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span> x<span class="token punctuation">,</span> <span class="token keyword">int</span> <span class="token operator">*</span> y<span class="token punctuation">,</span> <span class="token keyword">int</span> <span class="token operator">*</span> z<span class="token punctuation">,</span> <span class="token keyword">int</span> n<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
         <span class="token keyword">int</span> i<span class="token punctuation">;</span>
@@ -418,10 +380,8 @@ x <span class="token operator">=</span> <span class="token number">15212</span><
                 z<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> x<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">*</span> y<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
         <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
 <p><strong>使用<code>AR工具</code>将两个目标模块<em>addvec.o multvec.o</em>打包成静态库(<code>ar rcs libxxx.a xxx.o xxx.o</code>)</strong></p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token punctuation">[</span>root@lhyEdu01 link<span class="token punctuation">]</span># ar rcs linvector<span class="token punctuation">.</span>a addvec<span class="token punctuation">.</span>o multvec<span class="token punctuation">.</span>o<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
 <p>以main2.c文件为例</p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
 <span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"vector.h"</span></span>
@@ -435,15 +395,10 @@ x <span class="token operator">=</span> <span class="token number">15212</span><
         <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"z = [%d %d]\n"</span><span class="token punctuation">,</span> z<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> z<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
 <p>其中”vector.h”中包含对addvec函数的声明：</p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">addvec</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span> x<span class="token punctuation">,</span> <span class="token keyword">int</span> <span class="token operator">*</span> y<span class="token punctuation">,</span> <span class="token keyword">int</span> <span class="token operator">*</span> z<span class="token punctuation">,</span> <span class="token keyword">int</span> n<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-
-
 <p><strong>编译和链接输入文件main2.o和libvector.a</strong></p>
-<img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/1125E426BCF8DCF854B292C45FC50D8A.jpg" style="zoom:20%;" />
-
+<p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/1125E426BCF8DCF854B292C45FC50D8A.jpg" style="zoom:20%;" /></p>
 <blockquote>
 <p><strong>链接器判断main2.o引用了addvec.o定义的addvec符号，所以复制addvec.o到可执行文件。</strong></p>
 <p><strong>因为程序未引用multvec.0定义的符号，所以链接器就不会复制这个模块到可执行文件。</strong></p>
@@ -453,9 +408,6 @@ x <span class="token operator">=</span> <span class="token number">15212</span><
 <span class="token punctuation">[</span>root@lhyEdu01 link<span class="token punctuation">]</span># gcc <span class="token operator">-</span><span class="token keyword">static</span> <span class="token operator">-</span>o prog2c main2<span class="token punctuation">.</span>o <span class="token punctuation">.</span><span class="token operator">/</span>libvector<span class="token punctuation">.</span>a
 <span class="token punctuation">[</span>root@lhyEdu01 link<span class="token punctuation">]</span># <span class="token punctuation">.</span><span class="token operator">/</span>prog2c 
 z <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">4</span> <span class="token number">6</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
 <h3 id="5-重定位"><a href="#5-重定位" class="headerlink" title="5.重定位"></a>5.重定位</h3><p>当汇编器生成一个目标模块时，它并不知道数据和代码最终将放在内存中的什么位置。也不知道本模块引用的外部定义函数或全局变量的最终位置。</p>
 <p><strong><font size=3 color=red>因此，汇编器遇到对最终位置未知的目标引用，就会生成一个【重定位条目】，告诉链接器再将目标文件合并为可执行文件时如何修改这个引用。</font></strong></p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">/*重定位条目-数据结构*/</span>
@@ -466,7 +418,6 @@ z <span class="token operator">=</span> <span class="token punctuation">[</span>
 		symbol<span class="token operator">:</span><span class="token number">32</span><span class="token punctuation">;</span><span class="token comment">//表示被修改的引用是哪个符号</span>
 	<span class="token keyword">long</span> addend<span class="token punctuation">;</span><span class="token comment">//有符号数，一些类型的重定位要使用它对被修改引用的值做偏移调整(指令长度)</span>
 <span class="token punctuation">&#125;</span> ELF_Rela<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
 <blockquote>
 <p><strong>代码的重定位条目存放在<code>.rel.text</code>中</strong></p>
 <p><strong>已初始化数据的重定位条目存放在<code>.rel.data</code>中</strong></p>
@@ -487,9 +438,6 @@ z <span class="token operator">=</span> <span class="token punctuation">[</span>
 		<span class="token punctuation">&#125;</span>
 	<span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
 <h4 id="①重定位PC相对引用"><a href="#①重定位PC相对引用" class="headerlink" title="①重定位PC相对引用"></a>①重定位PC相对引用</h4><p><strong>例：对源文件<em>main.c</em>和<em>sum.c</em>进行反汇编：</strong></p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">sum</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span> a<span class="token punctuation">,</span> <span class="token keyword">int</span> n<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
@@ -500,7 +448,6 @@ z <span class="token operator">=</span> <span class="token punctuation">[</span>
 
         <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
 <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">sum</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span> a<span class="token punctuation">,</span> <span class="token keyword">int</span> n<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
         <span class="token keyword">int</span> i<span class="token punctuation">,</span> s <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
         <span class="token keyword">for</span><span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
@@ -508,54 +455,45 @@ z <span class="token operator">=</span> <span class="token punctuation">[</span>
         <span class="token punctuation">&#125;</span>
         <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
 <p><strong>再用<code>objdump -dx main.o</code>对main,o进行反编译后结果：</strong></p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token punctuation">[</span>root@lhyEdu01 link<span class="token punctuation">]</span># objdump <span class="token operator">-</span>dx main<span class="token punctuation">.</span>o<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/image-20231229213448474.png" style="zoom: 50%;" />
-
+<p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/image-20231229213448474.png" style="zoom: 50%;" /></p>
 <p><strong>函数main调用sum函数，sum函数是在sum.o模块中定义的，sum的重定位条目为：</strong></p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c">r<span class="token punctuation">,</span>offset <span class="token operator">=</span> <span class="token number">0xf</span>
 r<span class="token punctuation">.</span>symbol <span class="token operator">=</span> sum
 r<span class="token punctuation">.</span>type   <span class="token operator">=</span> R_X86_64_PC32
 r<span class="token punctuation">.</span>addend <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">4</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
 <p><strong><u>这些字段告诉链接器修改开始于0xf处的32位PC相对引用，这样在运行时它会指向sum例程</u>。假设链接器已确定：</strong></p>
 <ul>
-<li><strong><code>ADDR(s) = ADDR(.text)</code> &#x3D; 0x400d0</strong></li>
-<li><strong><code>ADDR(r.symbol) = ADDR(sum)</code> &#x3D; 0x400e8</strong></li>
+<li><strong><code>ADDR(s) = ADDR(.text)</code> = 0x400d0</strong></li>
+<li><strong><code>ADDR(r.symbol) = ADDR(sum)</code> = 0x400e8</strong></li>
 </ul>
 <p><strong>使用<code>重定位算法</code>知：</strong></p>
 <ol>
 <li><p><strong>链接器首先算出引用的<u>运行时地址</u>：</strong></p>
-<p><strong>ref_addr &#x3D; ADDR(s) + r.offset &#x3D; 0x4004d0 + 0xf &#x3D; 0x4004df</strong> </p>
+<p><strong>ref_addr = ADDR(s) + r.offset = 0x4004d0 + 0xf = 0x4004df</strong> </p>
 </li>
 <li><p><strong>然后更新该引用，使得它再运行时指向sum程序(实际就是求PC的offset)</strong></p>
-<p><strong>ref_ptr &#x3D; ADDR(sum) - ref_addr + r.addend &#x3D; 0x4004e8 - 0x4004df +(-4) &#x3D; 0x5</strong></p>
+<p><strong>ref_ptr = ADDR(sum) - ref_addr + r.addend = 0x4004e8 - 0x4004df +(-4) = 0x5</strong></p>
 </li>
 </ol>
 <p>得到的可执行文件中，call指令由如下形式：</p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token number">4004</span>de<span class="token operator">:</span>	e8 <span class="token number">05</span> <span class="token number">00</span> <span class="token number">00</span> <span class="token number">00</span>       	callq  <span class="token number">4004e8</span> <span class="token operator">&lt;</span>sum<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-
-
 <h4 id="②重定位绝对引用"><a href="#②重定位绝对引用" class="headerlink" title="②重定位绝对引用"></a>②重定位绝对引用</h4><p><strong>mov指令将array地址(32位立即数)复制到寄存器%edi中，sum函数是在sum.o模块中定义的，sum的重定位条目为：</strong></p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c">r<span class="token punctuation">,</span>offset <span class="token operator">=</span> <span class="token number">0xa</span>
 r<span class="token punctuation">.</span>symbol <span class="token operator">=</span> array
 r<span class="token punctuation">.</span>type   <span class="token operator">=</span> R_X86_64_32
 r<span class="token punctuation">.</span>addend <span class="token operator">=</span> <span class="token number">0</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
 <p>这些字段告诉链接器修改开始于0xa处的32位绝对引用，这样在运行时它会指向array的第一个字节。假设链接器已确定：</p>
 <ul>
-<li><strong><code>ADDR(r.symbol) = ADDR(array)</code> &#x3D; 0x601018</strong></li>
+<li><strong><code>ADDR(r.symbol) = ADDR(array)</code> = 0x601018</strong></li>
 </ul>
 <p>链接器修改第13行的引用：</p>
-<p>*<strong>ref_ptr &#x3D; (unsigned) ((ADDR(r.symbol) + r.addend)) &#x3D; (unsigned) (0x601018 + 0) &#x3D; 0x601018</strong></p>
+<p><strong>*ref_ptr = (unsigned) ((ADDR(r.symbol) + r.addend)) = (unsigned) (0x601018 + 0) = 0x601018</strong></p>
 <p>得到的可执行文件中，机器指令由如下形式：</p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token number">4004</span>d9<span class="token operator">:</span>	bf <span class="token number">18</span> <span class="token number">10</span> <span class="token number">60</span> <span class="token number">00</span>       	mov $<span class="token number">0x601018</span><span class="token punctuation">,</span> <span class="token operator">%</span>edi<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/D0D016AAD0F392AC3C3FFCEFEFAA42CC.jpg"></p>
-<h3 id="6-可执行目标文件-加载过程"><a href="#6-可执行目标文件-加载过程" class="headerlink" title="6.可执行目标文件&amp;加载过程"></a>6.可执行目标文件&amp;加载过程</h3></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://aqua555552st.github.io">Li haoyu</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://aqua555552st.github.io/2024/02/02/gcc%E2%80%94%E5%B7%A5%E5%85%B7%E9%93%BE/">https://aqua555552st.github.io/2024/02/02/gcc%E2%80%94%E5%B7%A5%E5%85%B7%E9%93%BE/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://aqua555552st.github.io" target="_blank">aqua555552st's script</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/1610795053452.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/8AFF4D21B8A57048AE154C70265E0915.png" target="_blank"><img class="post-qr-code-img" src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/8AFF4D21B8A57048AE154C70265E0915.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/28237B11743992B7688DFA1299C4593F.jpg" target="_blank"><img class="post-qr-code-img" src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/28237B11743992B7688DFA1299C4593F.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-full"><a href="/2024/02/03/1-5%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9A%84%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87/" title="1.5计算机网络的性能指标"><img class="cover" src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/115586914_p0_master1200.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">1.5计算机网络的性能指标</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div class="comment-switch"><span class="first-comment">Valine</span><span id="switch-btn"></span><span class="second-comment">Disqus</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div><div><div id="disqus_thread"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#gcc%E5%B7%A5%E5%85%B7%E9%93%BE"><span class="toc-number">1.</span> <span class="toc-text">gcc工具链</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81gcc%E5%9B%9B%E6%AD%A5%E9%AA%A4"><span class="toc-number">1.1.</span> <span class="toc-text">一、gcc四步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E9%A2%84%E5%A4%84%E7%90%86"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.预处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E7%BC%96%E8%AF%91"><span class="toc-number">1.1.2.</span> <span class="toc-text">2.编译</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%B1%87%E7%BC%96"><span class="toc-number">1.1.3.</span> <span class="toc-text">3.汇编</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E9%93%BE%E6%8E%A5"><span class="toc-number">1.1.4.</span> <span class="toc-text">4.链接</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81gcc%E7%BC%96%E8%AF%91%E5%B8%B8%E7%94%A8%E5%8F%82%E6%95%B0"><span class="toc-number">1.2.</span> <span class="toc-text">二、gcc编译常用参数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%A4%B4%E6%96%87%E4%BB%B6%E8%B7%A8%E7%9B%AE%E5%BD%95%E4%BE%9D%E8%B5%96"><span class="toc-number">1.2.1.</span> <span class="toc-text">1.头文件跨目录依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%8F%AA%E5%81%9A%E9%A2%84%E5%A4%84%E7%90%86-%E7%BC%96%E8%AF%91-%E6%B1%87%E7%BC%96"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.只做预处理+编译+汇编</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E7%BC%96%E8%AF%91%E6%97%B6%E6%B7%BB%E5%8A%A0%E8%B0%83%E8%AF%95%E8%AF%AD%E5%8F%A5"><span class="toc-number">1.2.3.</span> <span class="toc-text">3.编译时添加调试语句</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81csapp%E2%80%94chapter7-%E9%93%BE%E6%8E%A5"><span class="toc-number">1.3.</span> <span class="toc-text">三、csapp—chapter7:链接</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%8F%AF%E9%87%8D%E5%AE%9A%E4%BD%8D%E7%9B%AE%E6%A0%87%E6%96%87%E4%BB%B6-ELF%E6%96%87%E4%BB%B6"><span class="toc-number">1.3.1.</span> <span class="toc-text">1.可重定位目标文件(ELF文件)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-section-%E8%8A%82-%E7%9A%84%E5%85%B7%E4%BD%93%E5%86%85%E5%AE%B9"><span class="toc-number">1.3.2.</span> <span class="toc-text">2.section(节)的具体内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E7%AC%A6%E5%8F%B7-%E7%AC%A6%E5%8F%B7%E8%A1%A8-symtab%EF%BC%89"><span class="toc-number">1.3.3.</span> <span class="toc-text">3.符号&amp;符号表(.symtab）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E7%AC%A6%E5%8F%B7%E8%A7%A3%E6%9E%90"><span class="toc-number">1.3.4.</span> <span class="toc-text">4.符号解析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9D%99%E6%80%81%E5%BA%93-static-library"><span class="toc-number">1.3.4.1.</span> <span class="toc-text">静态库(static library)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E9%87%8D%E5%AE%9A%E4%BD%8D"><span class="toc-number">1.3.5.</span> <span class="toc-text">5.重定位</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%87%8D%E5%AE%9A%E4%BD%8D%E7%AE%97%E6%B3%95"><span class="toc-number">1.3.5.1.</span> <span class="toc-text">重定位算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E2%91%A0%E9%87%8D%E5%AE%9A%E4%BD%8DPC%E7%9B%B8%E5%AF%B9%E5%BC%95%E7%94%A8"><span class="toc-number">1.3.5.2.</span> <span class="toc-text">①重定位PC相对引用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E2%91%A1%E9%87%8D%E5%AE%9A%E4%BD%8D%E7%BB%9D%E5%AF%B9%E5%BC%95%E7%94%A8"><span class="toc-number">1.3.5.3.</span> <span class="toc-text">②重定位绝对引用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E5%8F%AF%E6%89%A7%E8%A1%8C%E7%9B%AE%E6%A0%87%E6%96%87%E4%BB%B6-%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B"><span class="toc-number">1.3.6.</span> <span class="toc-text">6.可执行目标文件&amp;加载过程</span></a></li></ol></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/1610795053452.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By Li haoyu</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.12.0"></script><script src="/js/main.js?v=4.12.0"></script><script src="/js/tw_cn.js?v=4.12.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.32/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+<p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/D0D016AAD0F392AC3C3FFCEFEFAA42CC.jpg" alt=""></p>
+<h3 id="6-可执行目标文件-amp-加载过程"><a href="#6-可执行目标文件-amp-加载过程" class="headerlink" title="6.可执行目标文件&amp;加载过程"></a>6.可执行目标文件&amp;加载过程</h3></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://aqua555552st.github.io">Li haoyu</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://aqua555552st.github.io/2024/02/02/gcc%E2%80%94%E5%B7%A5%E5%85%B7%E9%93%BE/">https://aqua555552st.github.io/2024/02/02/gcc%E2%80%94%E5%B7%A5%E5%85%B7%E9%93%BE/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://aqua555552st.github.io" target="_blank">aqua555552st's script</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/1610795053452.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/8AFF4D21B8A57048AE154C70265E0915.png" target="_blank"><img class="post-qr-code-img" src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/8AFF4D21B8A57048AE154C70265E0915.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/28237B11743992B7688DFA1299C4593F.jpg" target="_blank"><img class="post-qr-code-img" src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/28237B11743992B7688DFA1299C4593F.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-full"><a href="/2024/02/03/1-5%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9A%84%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87/" title="1.5计算机网络的性能指标"><img class="cover" src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/115522824_p0_master1200.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">1.5计算机网络的性能指标</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div class="comment-switch"><span class="first-comment">Valine</span><span id="switch-btn"></span><span class="second-comment">Disqus</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div><div><div id="disqus_thread"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#gcc%E5%B7%A5%E5%85%B7%E9%93%BE"><span class="toc-number">1.</span> <span class="toc-text">gcc工具链</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81gcc%E5%9B%9B%E6%AD%A5%E9%AA%A4"><span class="toc-number">1.1.</span> <span class="toc-text">一、gcc四步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E9%A2%84%E5%A4%84%E7%90%86"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.预处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E7%BC%96%E8%AF%91"><span class="toc-number">1.1.2.</span> <span class="toc-text">2.编译</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%B1%87%E7%BC%96"><span class="toc-number">1.1.3.</span> <span class="toc-text">3.汇编</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E9%93%BE%E6%8E%A5"><span class="toc-number">1.1.4.</span> <span class="toc-text">4.链接</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81gcc%E7%BC%96%E8%AF%91%E5%B8%B8%E7%94%A8%E5%8F%82%E6%95%B0"><span class="toc-number">1.2.</span> <span class="toc-text">二、gcc编译常用参数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%A4%B4%E6%96%87%E4%BB%B6%E8%B7%A8%E7%9B%AE%E5%BD%95%E4%BE%9D%E8%B5%96"><span class="toc-number">1.2.1.</span> <span class="toc-text">1.头文件跨目录依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%8F%AA%E5%81%9A%E9%A2%84%E5%A4%84%E7%90%86-%E7%BC%96%E8%AF%91-%E6%B1%87%E7%BC%96"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.只做预处理+编译+汇编</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E7%BC%96%E8%AF%91%E6%97%B6%E6%B7%BB%E5%8A%A0%E8%B0%83%E8%AF%95%E8%AF%AD%E5%8F%A5"><span class="toc-number">1.2.3.</span> <span class="toc-text">3.编译时添加调试语句</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81csapp%E2%80%94chapter7-%E9%93%BE%E6%8E%A5"><span class="toc-number">1.3.</span> <span class="toc-text">三、csapp—chapter7:链接</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%8F%AF%E9%87%8D%E5%AE%9A%E4%BD%8D%E7%9B%AE%E6%A0%87%E6%96%87%E4%BB%B6-ELF%E6%96%87%E4%BB%B6"><span class="toc-number">1.3.1.</span> <span class="toc-text">1.可重定位目标文件(ELF文件)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-section-%E8%8A%82-%E7%9A%84%E5%85%B7%E4%BD%93%E5%86%85%E5%AE%B9"><span class="toc-number">1.3.2.</span> <span class="toc-text">2.section(节)的具体内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E7%AC%A6%E5%8F%B7-amp-%E7%AC%A6%E5%8F%B7%E8%A1%A8-symtab%EF%BC%89"><span class="toc-number">1.3.3.</span> <span class="toc-text">3.符号&amp;符号表(.symtab）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E7%AC%A6%E5%8F%B7%E8%A7%A3%E6%9E%90"><span class="toc-number">1.3.4.</span> <span class="toc-text">4.符号解析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9D%99%E6%80%81%E5%BA%93-static-library"><span class="toc-number">1.3.4.1.</span> <span class="toc-text">静态库(static library)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E9%87%8D%E5%AE%9A%E4%BD%8D"><span class="toc-number">1.3.5.</span> <span class="toc-text">5.重定位</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%87%8D%E5%AE%9A%E4%BD%8D%E7%AE%97%E6%B3%95"><span class="toc-number">1.3.5.1.</span> <span class="toc-text">重定位算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E2%91%A0%E9%87%8D%E5%AE%9A%E4%BD%8DPC%E7%9B%B8%E5%AF%B9%E5%BC%95%E7%94%A8"><span class="toc-number">1.3.5.2.</span> <span class="toc-text">①重定位PC相对引用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E2%91%A1%E9%87%8D%E5%AE%9A%E4%BD%8D%E7%BB%9D%E5%AF%B9%E5%BC%95%E7%94%A8"><span class="toc-number">1.3.5.3.</span> <span class="toc-text">②重定位绝对引用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E5%8F%AF%E6%89%A7%E8%A1%8C%E7%9B%AE%E6%A0%87%E6%96%87%E4%BB%B6-amp-%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B"><span class="toc-number">1.3.6.</span> <span class="toc-text">6.可执行目标文件&amp;加载过程</span></a></li></ol></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url('https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/1610795053452.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By Li haoyu</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.12.0"></script><script src="/js/main.js?v=4.12.0"></script><script src="/js/tw_cn.js?v=4.12.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.32/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
   const initValine = () => {
     const valine = new Valine(Object.assign({
       el: '#vcomment',
