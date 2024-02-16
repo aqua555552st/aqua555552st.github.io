@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>0.Linux介绍</title>
+      <link href="/2024/02/16/0.Linux%E4%BB%8B%E7%BB%8D/"/>
+      <url>/2024/02/16/0.Linux%E4%BB%8B%E7%BB%8D/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Linux介绍"><a href="#Linux介绍" class="headerlink" title="Linux介绍"></a>Linux介绍</h1><h2 id="1-概述"><a href="#1-概述" class="headerlink" title="1.概述"></a>1.概述</h2><p><img src="D:\markdown(typora)使用教程.assets\2683F7BA416692134E45A0C96255C5A7.png"></p><hr><h2 id="2-Linux之父"><a href="#2-Linux之父" class="headerlink" title="2.Linux之父"></a>2.Linux之父</h2><p><img src="D:\markdown(typora)使用教程.assets\A2259D8123737C9775D672FECEEFDF2D.png"></p><hr><h2 id="3-主要发行版本"><a href="#3-主要发行版本" class="headerlink" title="3.主要发行版本"></a>3.主要发行版本</h2><p><img src="D:\markdown(typora)使用教程.assets\BB0902C19CE1F75DEE276585593DC80A.png"></p><blockquote><p><strong>Linux</strong>是一个<strong>内核</strong>，其他各种发行版都是在内核上的进一步<strong>封装</strong></p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> centos </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>泛型依赖注入</title>
       <link href="/2024/02/16/%E6%B3%9B%E5%9E%8B%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/"/>
       <url>/2024/02/16/%E6%B3%9B%E5%9E%8B%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/</url>
