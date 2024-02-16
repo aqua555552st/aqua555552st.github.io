@@ -4,6 +4,131 @@
   
     
     <entry>
+      <title>15.帮助指令</title>
+      <link href="/2024/02/16/15-%E5%B8%AE%E5%8A%A9%E6%8C%87%E4%BB%A4/"/>
+      <url>/2024/02/16/15-%E5%B8%AE%E5%8A%A9%E6%8C%87%E4%BB%A4/</url>
+      
+        <content type="html"><![CDATA[<h1 id="帮助指令"><a href="#帮助指令" class="headerlink" title="帮助指令"></a>帮助指令</h1><h2 id="man-获得帮助信息"><a href="#man-获得帮助信息" class="headerlink" title="man 获得帮助信息"></a>man 获得帮助信息</h2><h3 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">man</span> <span class="token punctuation">[</span>命令或配置文件<span class="token punctuation">]</span>                                   //功能描述：获得指令的具体用法<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h3 id="应用实例"><a href="#应用实例" class="headerlink" title="应用实例"></a>应用实例</h3><p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/2CB488C962EA1E8B9BC5C25F8CBC00A5.png" alt="img"></p><p>查看 <strong>ls命令的 帮助信息</strong>         👉👉👉<img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/image-20220808204321570.png" alt="" style="zoom:80%;" /></p><p><strong>信息1</strong></p><blockquote><p>linux中，<strong>隐藏文件</strong>以’ <code>.</code> ‘开头<img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/15550A3AB97558C3537E81E37E65A477.png" alt="" style="zoom: 67%;" /></p><p><strong>指令：<code>ls -a</code></strong></p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/image-20220808205136279.png" alt="" style="zoom:80%;" /></blockquote><p><strong>信息2</strong></p><blockquote><p><strong>指令：<code>ls -l</code></strong> <img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/image-20220808205945006.png"></p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/image-20220808210122531.png" alt="" style="zoom:80%;" /></blockquote><p><strong>信息3 [信息1 与 信息2的指令混合使用]</strong></p><blockquote><p><strong>指令：<code>ls -la (/文件目录) / ls -al (/文件目录)</code></strong> <strong>单列输出，并包含隐藏文件</strong></p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/image-20220808211320199.png" alt="" style="zoom:80%;" /></blockquote><hr><h2 id="help-指令"><a href="#help-指令" class="headerlink" title="help 指令"></a>help 指令</h2><h3 id="基本语法-1"><a href="#基本语法-1" class="headerlink" title="基本语法"></a>基本语法</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token builtin class-name">help</span> 命令                                    //功能描述：获得shell内置命令的帮助信息<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h3 id="应用实例-1"><a href="#应用实例-1" class="headerlink" title="应用实例"></a>应用实例</h3><p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/F230BB3F0485C869E783792D09725B03.png"></p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/image-20220808212002581.png" alt="" style="zoom: 67%;" />]]></content>
+      
+      
+      <categories>
+          
+          <category> linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> centos </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>14.找回root密码</title>
+      <link href="/2024/02/16/14-%E6%89%BE%E5%9B%9Eroot%E5%AF%86%E7%A0%81/"/>
+      <url>/2024/02/16/14-%E6%89%BE%E5%9B%9Eroot%E5%AF%86%E7%A0%81/</url>
+      
+        <content type="html"><![CDATA[<h1 id="找回root密码"><a href="#找回root密码" class="headerlink" title="找回root密码"></a>找回root密码</h1><h2 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h2><p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/ABBFAB012CBF2DF13C2FECB57D8F4914.png"></p><hr><h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><h3 id="step1"><a href="#step1" class="headerlink" title="step1"></a>step1</h3><p><strong>开机时， 选项界面 press “e” [注意只有5秒]</strong></p><h3 id="step2"><a href="#step2" class="headerlink" title="step2"></a>step2</h3><p><strong>找到 <code>linux16开头</code>段落，移动下标到  <code>\zh_CN.UTF8</code>后面。空一格。</strong></p><p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/456D8EC021F0AA33D277488F528422D0.png"></p><p><strong>输入：<code>init=/bin/sh。</code>回车。</strong></p><h3 id="step3"><a href="#step3" class="headerlink" title="step3"></a>step3</h3><p>输入完成后，直接按<code>快捷键：Ctrl + x</code> ，<strong>进入单用户模式</strong>。</p><h3 id="step4"><a href="#step4" class="headerlink" title="step4"></a>step4</h3><p>接着，在光标闪烁位置中<strong>输入：<code>mount -o remount,rw /</code></strong> [注意空格！]，回车</p><p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/F1DB67A6475EA8AAFF183E77ED7D8251.png"></p><h3 id="step5"><a href="#step5" class="headerlink" title="step5"></a>step5</h3><p>在最新的一行，**<code>输入：passwd</code><strong>，完成后回车。</strong>输入密码，然后再次确认密码(最好8位以上)**</p><p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/E2F53817149E7FB14E2DA2E97F9ABDF7.png"></p><p>密码修改成功后，会显示 passwd…的样式，说明密码修改成功。</p><h3 id="step6"><a href="#step6" class="headerlink" title="step6"></a>step6</h3><p>接着，在鼠标闪烁位置，**<code>输入：touch /.autorelabel</code>**(注意：touch 与 &#x2F; 之间有空格)，按回车键。</p><h3 id="step7"><a href="#step7" class="headerlink" title="step7"></a>step7</h3><p><strong><code>输入：exec /sbin/init</code></strong>(注意：exec 与 &#x2F; 之间有空格)，按回车键,等待系统自动修改密码(时间可能有点长，耐心等待)，完成后，系统会自动重启，<strong>新的密码生效</strong></p><p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/EF9168DE6FD9F7A732D84B298DA02286.png"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> centos </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>13.指定运行级别</title>
+      <link href="/2024/02/16/13-%E6%8C%87%E5%AE%9A%E8%BF%90%E8%A1%8C%E7%BA%A7%E5%88%AB/"/>
+      <url>/2024/02/16/13-%E6%8C%87%E5%AE%9A%E8%BF%90%E8%A1%8C%E7%BA%A7%E5%88%AB/</url>
+      
+        <content type="html"><![CDATA[<h1 id="指定运行级别"><a href="#指定运行级别" class="headerlink" title="指定运行级别"></a>指定运行级别</h1><h2 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h2><p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/A91A43F420123ECE49E540B571F692EF.png"></p><hr><h2 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h2><h3 id="查看当前用户级别"><a href="#查看当前用户级别" class="headerlink" title="查看当前用户级别"></a>查看当前用户级别</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ systemctl get-default<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h3 id="设置当前用户级别"><a href="#设置当前用户级别" class="headerlink" title="设置当前用户级别"></a>设置当前用户级别</h3><p><strong>方法1</strong></p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ systemctl set-default muili-user.target                      //设置用户级别为3<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ systemctl set-default graphical.target                       //设置用户级别为5<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><blockquote><p><strong>注意：</strong><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/BDF2B9EDC3054AF7F59A99FF6E4CA2AF.png" alt="" style="zoom: 50%;" /></p></blockquote><p><strong>方法2</strong></p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ init <span class="token punctuation">[</span>0123456<span class="token punctuation">]</span>                                               //运行级别3,5最常用<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><hr><h2 id="应用案例"><a href="#应用案例" class="headerlink" title="应用案例"></a>应用案例</h2><p><strong>在XSHELL上远程登录Linux系统，并查询和更改运行级</strong></p><h3 id="查询运行级别"><a href="#查询运行级别" class="headerlink" title="查询运行级别"></a>查询运行级别</h3><p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/6Q8T@8RL4GEMJEHR09_%7BFP1.png"></p><h3 id="更改运行级别"><a href="#更改运行级别" class="headerlink" title="更改运行级别"></a>更改运行级别</h3><p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/L8CGF%7BJ8Y5P%600@N7NCI8NPN.png"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> centos </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>12.用户管理</title>
+      <link href="/2024/02/16/12-%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86/"/>
+      <url>/2024/02/16/12-%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86/</url>
+      
+        <content type="html"><![CDATA[<h1 id="用户管理"><a href="#用户管理" class="headerlink" title="用户管理"></a>用户管理</h1><h2 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h2><p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/041D29E0D261FE9E42E253562D1A85D9.png"></p><hr><h2 id="添加用户"><a href="#添加用户" class="headerlink" title="添加用户"></a>添加用户</h2><h3 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">useradd</span> 用户名<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h3 id="应用案例"><a href="#应用案例" class="headerlink" title="应用案例"></a>应用案例</h3><p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/C1F0215FAEBE978AD3EF4F3A06C3A768.png"></p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/image-20220808105613284.png" alt="" style="zoom:80%;" /><h3 id="细节说明"><a href="#细节说明" class="headerlink" title="细节说明"></a>细节说明</h3><p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/6F531BDCA0DEEBE64E110DD9B22B2431.png"></p><p><strong>举例2：在指定的 家目录&#x2F;home&#x2F;test 下创建用户king</strong></p><p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/image-20220808110145779.png"></p><hr><h2 id="指定-修改密码"><a href="#指定-修改密码" class="headerlink" title="指定&#x2F;修改密码"></a>指定&#x2F;修改密码</h2><h3 id="基本语法-1"><a href="#基本语法-1" class="headerlink" title="基本语法"></a>基本语法</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ password 用户名<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h3 id="应用案例-1"><a href="#应用案例-1" class="headerlink" title="应用案例"></a>应用案例</h3><p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/4888467CD642A0AAEEF1C745C7264012.png"></p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/image-20220808110732358.png" alt="" style="zoom:80%;" /><p><strong>shell登录 milan账号：</strong></p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/9478656E47937E570F8B1DCE03F51B32.png" alt="" style="zoom:30%;" /><hr><h2 id="删除用户"><a href="#删除用户" class="headerlink" title="删除用户"></a>删除用户</h2><h3 id="基本语法-2"><a href="#基本语法-2" class="headerlink" title="基本语法"></a>基本语法</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">userdel</span> <span class="token punctuation">[</span>-r<span class="token punctuation">]</span> 用户名                                 //-r会连家目录也删除！ //家目录包含账号的所有代码资料<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><h3 id="应用案例-2"><a href="#应用案例-2" class="headerlink" title="应用案例"></a>应用案例</h3><p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/2057E303961414334DE3BA1172282B4C.png"></p><p>1.删除milan，保存家目录</p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/image-20220808112546840.png" alt="" style="zoom:80%;" /><p>2.删除用户以及主目录</p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/image-20220808112914154.png" alt="" style="zoom:80%;" /><h3 id="细节说明-1"><a href="#细节说明-1" class="headerlink" title="细节说明"></a>细节说明</h3><p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/78DCA294BD0AEC20BD3336CCB6C4D4C6.png"></p><hr><h2 id="查询用户信息指令"><a href="#查询用户信息指令" class="headerlink" title="查询用户信息指令"></a>查询用户信息指令</h2><h3 id="基本语法-3"><a href="#基本语法-3" class="headerlink" title="基本语法"></a>基本语法</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">id</span> 用户名<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h3 id="应用案例-3"><a href="#应用案例-3" class="headerlink" title="应用案例"></a>应用案例</h3><p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/36022A3B622112A23DA50CA8977AE464.png"></p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/image-20220808114621931.png" alt="" style="zoom:80%;" /><h3 id="细节说明-2"><a href="#细节说明-2" class="headerlink" title="细节说明"></a>细节说明</h3><p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/3AA73C075EE92A2612A7CEC3A7970347.png"></p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/image-20220808114646973.png" alt="" style="zoom:80%;" /><hr><h2 id="切换用户"><a href="#切换用户" class="headerlink" title="切换用户"></a>切换用户</h2><h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/C1CD72D380A2F1F3275C1AA6D385220C.png"></p><h3 id="基本语法-4"><a href="#基本语法-4" class="headerlink" title="基本语法"></a>基本语法</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">su</span> - 切换用户名<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h3 id="应用案例-4"><a href="#应用案例-4" class="headerlink" title="应用案例"></a>应用案例</h3><p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/A1A85A4B93AFBE9433C3D44F44206EAC.png"></p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/image-20220808115328807.png" alt="" style="zoom:80%;" /><h3 id="细节说明-3"><a href="#细节说明-3" class="headerlink" title="细节说明"></a>细节说明</h3><p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/19E971738C02A9017E376447EACDF52D.png"></p><hr><h2 id="查看当前用户信息"><a href="#查看当前用户信息" class="headerlink" title="查看当前用户信息"></a>查看当前用户信息</h2><h3 id="基本语法-5"><a href="#基本语法-5" class="headerlink" title="基本语法"></a>基本语法</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">whoami</span> / <span class="token function">who</span> am i                                 //带空格显示登陆时间,ip等信息<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h3 id="应用案例-5"><a href="#应用案例-5" class="headerlink" title="应用案例"></a>应用案例</h3><p><strong>查询当店用户信息</strong></p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/image-20220808120013528.png" alt="" style="zoom:80%;" /><hr><h2 id="用户组"><a href="#用户组" class="headerlink" title="用户组"></a>用户组</h2><h3 id="介绍-1"><a href="#介绍-1" class="headerlink" title="介绍"></a>介绍</h3><p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/C22037CD5F18527D3B3B756CC95DCEDE.png"></p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/57E1D8FC3698D208D8131860F8EAC0C3.png" alt="" style="zoom: 33%;" /><h3 id="基本语法-6"><a href="#基本语法-6" class="headerlink" title="基本语法"></a>基本语法</h3><p><strong>新增组</strong></p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">groupadd</span> 组名<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p><strong>删除组</strong></p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">groupdel</span> 组名<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p><strong>增加用户时直接加上组</strong></p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">useradd</span> <span class="token parameter variable">-g</span> 用户组名 用户名<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><blockquote><p>默认情况下，增加的用户加在 <strong>与用户名同名的组</strong></p></blockquote><p><strong>修改用户组</strong></p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">usermod</span> <span class="token parameter variable">-g</span> 用户组 用户名<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h3 id="案例演示"><a href="#案例演示" class="headerlink" title="案例演示"></a>案例演示</h3><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/image-20220808144446933.png" alt="" style="zoom:80%;" /><hr><h2 id="用户和组相关文件"><a href="#用户和组相关文件" class="headerlink" title="用户和组相关文件"></a>用户和组相关文件</h2><h3 id="etc-passwd-文件"><a href="#etc-passwd-文件" class="headerlink" title="&#x2F;etc&#x2F;passwd 文件"></a>&#x2F;etc&#x2F;passwd 文件</h3><p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/BCA70EADC13DD0BC2F8E5743EDEA8C09.png"></p><blockquote><p>vim &#x2F;etc&#x2F;passwd ⬇️</p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/image-20220808145718070.png" alt="" style="zoom:80%;" /></blockquote><h3 id="etc-shadow-文件"><a href="#etc-shadow-文件" class="headerlink" title="&#x2F;etc&#x2F;shadow 文件"></a>&#x2F;etc&#x2F;shadow 文件</h3><p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/29079501739AFD987C7DB998FFA3CB82.png"></p><blockquote><p>vim &#x2F;etc&#x2F;shadow ⬇️</p><p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/image-20220808150023967.png"></p></blockquote><h3 id="etc-group-文件"><a href="#etc-group-文件" class="headerlink" title="&#x2F;etc&#x2F;group 文件"></a>&#x2F;etc&#x2F;group 文件</h3><p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/9C33BA804848AC093F46D6A1650BEF90.png"></p><blockquote><p>vim &#x2F;etc&#x2F;group ⬇️</p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/image-20220808150243660.png" alt="" style="zoom:80%;" /></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> centos </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>11.用户登录和注销</title>
+      <link href="/2024/02/16/11-%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95%E5%92%8C%E6%B3%A8%E9%94%80/"/>
+      <url>/2024/02/16/11-%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95%E5%92%8C%E6%B3%A8%E9%94%80/</url>
+      
+        <content type="html"><![CDATA[<h1 id="用户登录和注销"><a href="#用户登录和注销" class="headerlink" title="用户登录和注销"></a>用户登录和注销</h1><h2 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h2><p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/962D3B825E0B898BC95969D50B9D666A.png"></p><blockquote><p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/37E6A6468062834EEAFFEA32B2236197.png"></p></blockquote><hr><h2 id="使用细节"><a href="#使用细节" class="headerlink" title="使用细节"></a>使用细节</h2><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/7BEA15983E9E756510103947AB302A61.png" alt="" style="zoom: 67%;" /><p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/image-20220808091126667.png"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> centos </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>10.关机&amp;重启命令</title>
       <link href="/2024/02/16/10-%E5%85%B3%E6%9C%BA-%E9%87%8D%E5%90%AF%E5%91%BD%E4%BB%A4/"/>
       <url>/2024/02/16/10-%E5%85%B3%E6%9C%BA-%E9%87%8D%E5%90%AF%E5%91%BD%E4%BB%A4/</url>
