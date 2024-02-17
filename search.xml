@@ -4,6 +4,81 @@
   
     
     <entry>
+      <title>23.Linux硬盘分区</title>
+      <link href="/2024/02/17/23-Linux%E7%A1%AC%E7%9B%98%E5%88%86%E5%8C%BA/"/>
+      <url>/2024/02/17/23-Linux%E7%A1%AC%E7%9B%98%E5%88%86%E5%8C%BA/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Linux硬盘分区"><a href="#Linux硬盘分区" class="headerlink" title="Linux硬盘分区"></a>Linux硬盘分区</h1><h2 id="原理介绍"><a href="#原理介绍" class="headerlink" title="原理介绍"></a>原理介绍</h2><p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/B919E6628DE3CEC390ED448ADC4F0769.png"></p><h3 id="示意图"><a href="#示意图" class="headerlink" title="示意图"></a>示意图</h3><p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/50908C42025087DAAE7163CB2110CCE1.png"></p><h3 id="查看设备挂载情况"><a href="#查看设备挂载情况" class="headerlink" title="查看设备挂载情况"></a>查看设备<u>挂载情况</u></h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ lsblk <span class="token punctuation">[</span>-f<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/image-20220811195633807.png"></p><hr><h2 id="硬盘说明"><a href="#硬盘说明" class="headerlink" title="硬盘说明"></a>硬盘说明</h2><h2 id=""><a href="#" class="headerlink" title=""></a><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/1735BDA44E93F88680494D1ED9549E5E.png"></h2><hr><h2 id="挂载的经典案例"><a href="#挂载的经典案例" class="headerlink" title="挂载的经典案例"></a>挂载的经典案例</h2><h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/A733E9CA8A984FF63DBBB01528CFE20D.png"></p><h3 id="案例说明"><a href="#案例说明" class="headerlink" title="案例说明"></a>案例说明</h3><p>将<strong>硬盘sdb的分区1</strong> <strong>挂载</strong>到根目录下的 <strong>&#x2F;newdisk目录</strong></p><p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/F51568FC723F2D7D5E618D04BFA48419.png"></p><h3 id="具体操作"><a href="#具体操作" class="headerlink" title="具体操作"></a>具体操作</h3><p><u><strong>step1：虚拟机增加硬盘</strong></u></p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/image-20220811201301470.png" alt="" style="zoom:50%;" /><p><strong>完成：</strong>     <img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/image-20220811201715961.png">，<strong>重启系统。</strong></p><p><strong>验证：</strong></p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/image-20220811202338368.png" alt="" style="zoom:80%;" /><p><strong><u>step2：对sdb硬盘进行分区</u></strong></p><blockquote><p>补充：<strong>分区命令</strong></p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token operator">></span>$ <span class="token function">fdisk</span> /dev/sdb<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></blockquote><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/image-20220811203049749.png" alt="" style="zoom: 67%;" /><blockquote><p>注意：<img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/9E14973C15363009DA35C8B6619318B1.png" alt="" style="zoom: 40%;" /></p></blockquote><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/image-20220811203011905.png" alt="" style="zoom: 65%;" /><p><strong>验证：</strong></p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/image-20220811203320814.png" alt="" style="zoom:67%;" /><p><strong><u>step3：格式化磁盘（给sdb硬盘创建一个40位的唯一标识符）</u></strong></p><blockquote><p>补充指令：<strong>分区命令</strong></p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token operator">></span>$ <span class="token function">mkfs</span> <span class="token parameter variable">-t</span> ext4 /dev/sdb1                                 //其中，ext4是分区类型<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></blockquote><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/image-20220811203913179.png" alt="" style="zoom:80%;" /><p><strong>验证：查看分区 是否已经格式化</strong></p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/image-20220811204204257.png" alt="image-20220811204204257" style="zoom:67%;" /><p><strong><u>step4：挂载</u></strong></p><blockquote><p>补充：<strong>挂载指令</strong>    <img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/E3F95D4BD38E0E672572E6CBEE938513.png" alt="" style="zoom: 50%;" /></p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token operator">></span>$ <span class="token function">mount</span> /dev/磁盘路径 /挂载点<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p><strong>卸载指令</strong></p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token operator">></span>$ <span class="token function">umount</span> /dev/磁盘路径 <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></blockquote><p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/image-20220811204736985.png"></p><p><strong>验证：</strong></p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/image-20220811204849459.png" alt="" style="zoom:67%;" /><p><strong><u>step5:设置永久挂载</u></strong></p><p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/0EO5ZOVRB%7D%5DVE%5DEGNF%7DN73.png"></p><p>修改 &#x2F;etc&#x2F;fstab 的文件，再重启系统</p><p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/image-20220811210550449.png"></p><p><strong>验证：</strong></p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/image-20220811210721346.png" alt="" style="zoom:67%;" />]]></content>
+      
+      
+      <categories>
+          
+          <category> linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> centos </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>22.at 任务调度机制</title>
+      <link href="/2024/02/17/22-at-%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6%E6%9C%BA%E5%88%B6/"/>
+      <url>/2024/02/17/22-at-%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6%E6%9C%BA%E5%88%B6/</url>
+      
+        <content type="html"><![CDATA[<h1 id="at-任务调度机制"><a href="#at-任务调度机制" class="headerlink" title="at 任务调度机制"></a>at 任务调度机制</h1><h2 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h2><p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/44D8BC719864CE43B9BE117B0C97C5E2.png"></p><blockquote><p><strong>补充</strong>（4）：查<strong>看当前所有进程指令</strong>👇</p><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token operator">></span>$ <span class="token function">ps</span> <span class="token parameter variable">-ef</span> <span class="token punctuation">[</span><span class="token operator">|</span> <span class="token function">grep</span> atd<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/image-20220811140728193.png"></p></blockquote><h3 id="示意图"><a href="#示意图" class="headerlink" title="示意图"></a>示意图</h3><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/02302D9BF5CBC7011ED4938C68FCD1E3.png" alt="" style="zoom: 50%;" /><hr><h2 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h2><h3 id="设置定时任务"><a href="#设置定时任务" class="headerlink" title="设置定时任务"></a>设置定时任务</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ at <span class="token punctuation">[</span>选项<span class="token punctuation">]</span> <span class="token punctuation">[</span>时间<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><blockquote><p><strong>at 命令选项</strong>：<img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/FF4E48F667300146BF99E7E8A1F32ED4.png" alt="" style="zoom: 50%;" /></p></blockquote><h3 id="删除定时任务"><a href="#删除定时任务" class="headerlink" title="删除定时任务"></a>删除定时任务</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ atrm 编号<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h3 id="查寻定时任务"><a href="#查寻定时任务" class="headerlink" title="查寻定时任务"></a>查寻定时任务</h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ atq<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p><strong>注意：</strong></p><ol><li><strong>Ctrl + D两次 结束at命令的输入</strong></li><li>**输入错了，Ctrl + Backspace删除 **</li></ol><hr><h2 id="at-时间定义"><a href="#at-时间定义" class="headerlink" title="at 时间定义"></a>at 时间定义</h2><p><strong>at指定时间的方法👇</strong></p><p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/6FAD6DB4C899F7D46A977AB2BE6DC526.png"></p><hr><h2 id="应用实例"><a href="#应用实例" class="headerlink" title="应用实例"></a>应用实例</h2><h3 id="案例1：2天后的下午5点执行-bin-ls-home"><a href="#案例1：2天后的下午5点执行-bin-ls-home" class="headerlink" title="案例1：2天后的下午5点执行 &#x2F;bin&#x2F;ls &#x2F;home"></a>案例1：2天后的下午5点执行 &#x2F;bin&#x2F;ls &#x2F;home</h3><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/image-20220811145754455.png" alt="" style="zoom:80%;" /><h3 id="案例2：atq命令查看系统中没有执行的工作任务"><a href="#案例2：atq命令查看系统中没有执行的工作任务" class="headerlink" title="案例2：atq命令查看系统中没有执行的工作任务"></a>案例2：atq命令查看系统中没有执行的工作任务</h3><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/image-20220811145821214.png" alt="" style="zoom:80%;" /><h3 id="案例3：明天17点钟，输入时间到指定文件内，比如-root-date100-log"><a href="#案例3：明天17点钟，输入时间到指定文件内，比如-root-date100-log" class="headerlink" title="案例3：明天17点钟，输入时间到指定文件内，比如 &#x2F;root&#x2F;date100.log"></a>案例3：明天17点钟，输入时间到指定文件内，比如 &#x2F;root&#x2F;date100.log</h3><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/image-20220811145839288.png" alt="" style="zoom:80%;" /><h3 id="案例4：2分钟后，输入时间到指定文件内，比如-root-date200-log"><a href="#案例4：2分钟后，输入时间到指定文件内，比如-root-date200-log" class="headerlink" title="案例4：2分钟后，输入时间到指定文件内，比如 &#x2F;root&#x2F;date200.log"></a>案例4：2分钟后，输入时间到指定文件内，比如 &#x2F;root&#x2F;date200.log</h3><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/image-20220811150024727.png" alt="" style="zoom:80%;" /><h3 id="案例5：删除已经设置的任务"><a href="#案例5：删除已经设置的任务" class="headerlink" title="案例5：删除已经设置的任务"></a>案例5：删除已经设置的任务</h3><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/image-20220811151125706.png" alt="" style="zoom:80%;" />]]></content>
+      
+      
+      <categories>
+          
+          <category> linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> centos </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>21.crond 任务调度</title>
+      <link href="/2024/02/17/21-crond-%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6/"/>
+      <url>/2024/02/17/21-crond-%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6/</url>
+      
+        <content type="html"><![CDATA[<h1 id="crond-任务调度"><a href="#crond-任务调度" class="headerlink" title="crond 任务调度"></a>crond 任务调度</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/3901F5D6BDA4BE523ABA625C8FA60BDB.png"></p><p>crond程序<strong>定时调用</strong> 程序&#x2F;脚本&#x2F;指令👇</p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/55BD24419E9066E5A4DE94DA6FAFFFC8.png" alt="" style="zoom:65%;" /><hr><h2 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">crontab</span> <span class="token punctuation">[</span>选项<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><blockquote><p><strong>常用选项：</strong><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/DB4C7EA3FADF925D22BCA06E1E6DC108.png" alt="" style="zoom:50%;" /></p></blockquote><hr><h2 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h2><p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/D2B066138EAB11D2629CE055AB802E02.png"></p><hr><h2 id="占位符说明"><a href="#占位符说明" class="headerlink" title="占位符说明"></a>占位符说明</h2><p><strong><code>*</code>1~5: 分 时 天 月 周</strong></p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/BD3169F0BB4DF06994AB937695B39CA2.png" alt="" style="zoom: 67%;" /><h3 id="特殊符号-说明"><a href="#特殊符号-说明" class="headerlink" title="特殊符号 说明"></a>特殊符号 说明</h3><p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/1BE517263B6544DD8B4A9E76468EAD2C.png"></p><h3 id="特定时间执行任务案例"><a href="#特定时间执行任务案例" class="headerlink" title="特定时间执行任务案例"></a>特定时间执行任务案例</h3><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/A9790C8224FD017FE1CA9B34D1983CCE.png" alt="" style="zoom: 60%;" /><hr><h2 id="应用实例"><a href="#应用实例" class="headerlink" title="应用实例"></a>应用实例</h2><p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/2E599E0E6A07DFCDD040D51E254AAD83.png"></p><p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/D95EFE90F5D1695EA304C24A42775B64.png"></p><p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/68202A9BA624424ED351DBC515E9D141.png"></p><p><strong>step1：写shell脚本 [vim &#x2F;home&#x2F;my.sh]，注意增加执行权限</strong> </p><p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/image-20220811133659243.png"></p><p><strong>step2：使用crond任务调度 [crontab -e]</strong> </p><p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/image-20220811133603425.png"></p><p><strong>[*&#x2F;1 * * * * &#x2F;home&#x2F;my.sh]</strong></p><p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/ZQHIC8A%5D_DSJG1XLOR%5B%7DGZI.png"></p><p><img src="https://typora-lhy-cs.oss-cn-nanjing.aliyuncs.com/CD97197CEFC0D1DEBBA89367443D56E2.png"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> centos </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>基于XML配置的AOP</title>
       <link href="/2024/02/17/%E5%9F%BA%E4%BA%8EXML%E9%85%8D%E7%BD%AE%E7%9A%84AOP/"/>
       <url>/2024/02/17/%E5%9F%BA%E4%BA%8EXML%E9%85%8D%E7%BD%AE%E7%9A%84AOP/</url>
